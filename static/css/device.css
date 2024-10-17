@@ -1,0 +1,21 @@
+.image_button img {
+    filter: invert(40%) sepia(61%) saturate(4489%) hue-rotate(100deg) brightness(92%) contrast(104%);
+}
+
+.content {
+    padding: 0 20px;
+    flex-direction: column;
+}
+
+.entry {
+    display: flex;
+    flex-direction: row;
+    width: -webkit-fill-available;
+}
+.entry_time {
+    color: #999;
+    padding-right: 20px;
+}
+.entry_log {
+    flex: 1;
+}

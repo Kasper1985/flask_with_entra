@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OAuth2 witn Microsoft Entra</title>
+    <link rel="icon" type="image/svg+xml" href="/static/images/logo.svg" />
+    <link rel="stylesheet" href="/static/css/common.css" />
+    <link rel="stylesheet" href="/static/css/device.css" />
+</head>
+<body>
+    <h1>Device Authorization Flow</h1>
+
+    <a href="/" class="back">
+        <img src="/static/images/go-back-arrow.svg" alt="Back" />
+    </a>
+
+    <div class="content">
+        {% if status %}
+            {% for s in status.entries %}
+                <div class="entry">
+                    <span class="entry_time">{{ s.time }}</span>
+                    <span class="entry_log">
+                        {% for line in s.log.split('\n')%}
+                        <span>{{ line }}</span><br/>
+                        {% endfor %}
+                    </span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <a href="/device?play=true" class="image_button">
+                <img src="/static/images/play-rectangle.svg" alt="Start flow" />
+                <div class="overlay">
+                    <div class="text">Start flow</div>
+                </div>
+            </a>
+        {% endif %}
+    </div>
+
+    <footer>
+        <hr>
+        <span>Powered by <span class="xebia">Xebia | Microsoft Services</span></span>
+    </footer>
+
+    {% if poling %}
+        <script>
+            setTimeout(function() {
+                window.location = '/device?device_code={{poling.device_code}}';
+            }, {{ poling.interval * 1000 }});
+        </script>
+    {% endif %}
+</body>
+</html>
