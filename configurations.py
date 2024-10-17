@@ -8,11 +8,12 @@ CLIENT_ID = os.getenv('CLIENT_ID')
 CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 AUTHORITY = f"{AUTHORIZATION_BASE_URL}/{os.getenv('TENANT_ID')}"
 
-REDIRECT_PATH = "/callback"
+#HOST_URL = "http://localhost:5000"
+HOST_URL = "https://cuddly-zebra-jrrjx56wwvp25qv-5000.app.github.dev"
 
 SCOPE = ["email", "User.Read", "Mail.Read", "Mail.Send"]
 
-API_ENDPOINT = "https://graph.microsoft.com/v1.0/me/messages"
+API_ENDPOINT_MESSAGES = "https://graph.microsoft.com/v1.0/me/messages"
 API_ENDPOINT_USER = "https://graph.microsoft.com/v1.0/me"
 
 SESSION_TYPE = "filesystem"

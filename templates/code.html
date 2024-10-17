@@ -4,16 +4,52 @@
     <meta charset="UTF-8">
     <title>OAuth2 witn Microsoft Entra</title>
     <link rel="icon" type="image/svg+xml" href="/static/images/logo.svg" />
-    <link rel="stylesheet" href="/static/common.css" />
+    <link rel="stylesheet" href="/static/css/common.css" />
+    <link rel="stylesheet" href="/static/css/code.css" />
 </head>
 <body>
-    <h1>Code Authorization Flow</h1>
-
     <a href="/" class="back">
         <img src="/static/images/go-back-arrow.svg" alt="Back" />
     </a>
+    
+    <h1>Code Authorization Flow</h1>
 
     <div class="content">
+        {% if access_token %}
+            <div class="entry">
+                <span class="entry_time">{{ status.entries[-1].time }}</span>
+                <span class="entry_log">
+                    {% for line in status.entries[-1].log.split('\n') %}
+                        <span>{{ line }}</span><br/>
+                    {% endfor %}
+                </span>
+            </div>
+
+            <a href="/get_data" class="image_button">
+                <img src="/static/images/service-Public-IP-Prefixes.svg" alt="Get data" />
+                <div class="overlay">
+                    <div class="text">Get data</div>
+                </div>
+            </a>
+        {% elif not status.isEmpty() %}
+            {% for s in status.entries %}
+                <div class="entry">
+                    <span class="entry_time">{{ s.time }}</span>
+                    <span class="entry_log">
+                        {% for line in s.log.split('\n')%}
+                            <span>{{ line }}</span><br/>
+                        {% endfor %}
+                    </span>
+                </div>
+            {% endfor %}
+        {% else %}
+            <a href="/code?play=true" class="image_button">
+                <img src="/static/images/play-rectangle.svg" alt="Start flow" />
+                <div class="overlay">
+                    <div class="text">Start flow</div>
+                </div>
+            </a>
+        {% endif %}
     </div>
 
     <footer>

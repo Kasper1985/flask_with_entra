@@ -8,20 +8,36 @@
     <link rel="stylesheet" href="/static/css/device.css" />
 </head>
 <body>
-    <h1>Device Authorization Flow</h1>
-
     <a href="/" class="back">
         <img src="/static/images/go-back-arrow.svg" alt="Back" />
     </a>
+    
+    <h1>Device Authorization Flow</h1>
 
     <div class="content">
-        {% if status %}
+        {% if access_token %}
+            <div class="entry">
+                <span class="entry_time">{{ status.entries[-1].time }}</span>
+                <span class="entry_log">
+                    {% for line in status.entries[-1].log.split('\n') %}
+                        <span>{{ line }}</span><br/>
+                    {% endfor %}
+                </span>
+            </div>
+
+            <a href="/get_data" class="image_button">
+                <img src="/static/images/service-Public-IP-Prefixes.svg" alt="Get data" />
+                <div class="overlay">
+                    <div class="text">Get data</div>
+                </div>
+            </a>
+        {% elif not status.isEmpty() %}
             {% for s in status.entries %}
                 <div class="entry">
                     <span class="entry_time">{{ s.time }}</span>
                     <span class="entry_log">
                         {% for line in s.log.split('\n')%}
-                        <span>{{ line }}</span><br/>
+                            <span>{{ line }}</span><br/>
                         {% endfor %}
                     </span>
                 </div>
@@ -41,11 +57,11 @@
         <span>Powered by <span class="xebia">Xebia | Microsoft Services</span></span>
     </footer>
 
-    {% if poling %}
+    {% if device_code %}
         <script>
             setTimeout(function() {
-                window.location = '/device?device_code={{poling.device_code}}';
-            }, {{ poling.interval * 1000 }});
+                window.location = '/device?device_code={{device_code}}';
+            }, 5000);
         </script>
     {% endif %}
 </body>

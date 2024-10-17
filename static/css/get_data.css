@@ -1,0 +1,12 @@
+.content {
+    padding: 0 20px;
+    flex-direction: column;
+    overflow: hidden auto;
+    word-break: break-all;
+}
+
+.content div {
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 10px;
+}

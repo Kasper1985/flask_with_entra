@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OAuth2 witn Microsoft Entra</title>
+    <link rel="icon" type="image/svg+xml" href="/static/images/logo.svg" />
+    <link rel="stylesheet" href="/static/css/common.css" />
+    <link rel="stylesheet" href="/static/css/get_data.css" />
+</head>
+<body>
+    <a href="/" class="back">
+        <img src="/static/images/go-back-arrow.svg" alt="Back" />
+    </a>
+
+    <h1>Data from service</h1>
+    <h2>Welcome {{user.givenName}}! Here are your messages:</h2>
+
+    <div class="content">
+        <div>{{messages}}</div>
+    </div>
+</body>
